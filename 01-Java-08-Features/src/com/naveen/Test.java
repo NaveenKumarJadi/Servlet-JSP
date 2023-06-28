@@ -1,21 +1,41 @@
 package com.naveen;
 
+import java.util.Scanner;
 import java.util.function.Predicate;
 
-class Test
-{
+class User{
+	String username;
+	String pwd;
+	public User(String username, String pwd) {
+		super();
+		this.username = username;
+		this.pwd = pwd;
+	}	
+}
+
+class Test{
+	
 	public static void main(String[] args) {
 		
-		String[] names = {"sunny", "kajal", "malika", "katrina", "kareena"};
+		Predicate<User> p = u -> u.username.equals("Navin") && u.pwd.equals("Jadi");
 		
-		Predicate<String> startsWithK = s -> s.charAt(0)== 'k';
-		System.out.println("The Names starts with K are:");
-		for(String s: names)
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter user name: ");
+		String username = sc.next();
+		
+		System.out.println("Enter pwd: ");
+		String pwd = sc.next();
+		
+		User user =  new User(username, pwd);
+		if(p.test(user))
 		{
-			if(startsWithK.test(s))
-			{
-				System.out.println(s);
-			}
+			System.out.println("valid user");
+			
 		}
+		else
+		{
+			System.out.println("Invalid user");
+		}
+		
 	}
 }
